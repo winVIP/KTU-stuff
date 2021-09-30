@@ -1,0 +1,31 @@
+﻿@model AutoNuoma.Models.Review
+
+@{
+    ViewBag.Title = "ReviewCheck";
+}
+
+<h2>Atsiliepimas</h2>
+<table class="table">
+    <tr>
+        <th>Data</th>
+        <th>Pavadinimas</th>
+        <th>Tekstas</th>
+        <th>Įvertinimas</th>
+        <th>Ar patvirtintas</th>
+    </tr>
+    <tr>
+        <td>@Model.Date</td>
+        <td>@Model.Title</td>
+        <td>@Model.Text</td>
+        <td>@Model.Evaluation</td>
+        <td>@Model.IsApproved</td>
+    </tr>
+</table>
+<div>
+    @Html.ActionLink("Patvirtinti", "ReviewAccept", new { id = Model.Id }, new { onclick = "return alert('Patvirtinta');" })
+</div>
+<div>
+    @Html.ActionLink("Atmesti", "ReviewDeny", new { id = Model.Id }, new { onclick = "return alert('Atmesta');" })
+</div>
+
+

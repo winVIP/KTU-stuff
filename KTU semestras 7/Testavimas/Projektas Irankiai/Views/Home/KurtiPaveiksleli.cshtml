@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "KurtiPaveiksleli";
+}
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+@Html.ActionLink("Pasirinkti Šabloną", "PasirinktiSablona", "Home", null, new { @class = "btn btn-primary btn-large" })<br>
+<div class="form-group">
+    <label for="comment">Tekstas:</label>
+    <textarea class="form-control" rows="5" id="comment"></textarea>
+</div>
+@Html.ActionLink("Išsaugoti", "PerziuretiPavSarasa", "Home", null, new { @class = "btn btn-primary btn-large" })

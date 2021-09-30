@@ -1,0 +1,38 @@
+﻿@model AutoNuoma.Models.User
+
+@{
+    ViewBag.Title = "AccountEdit";
+}
+
+<h2>Paskyros redagavimo langas</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        <label class="control-label col-md-2">Email</label>
+        <div class="col-md-10">
+            <input type="email" value="@ViewBag.email" class="form-control" name="email" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Vardas</label>
+        <div class="col-md-10">
+            <input type="text" value="@ViewBag.firstName" class="form-control" name="firstName" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Pavardė</label>
+        <div class="col-md-10">
+            <input type="text" value="@ViewBag.lastName" class="form-control" name="lastName" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Patvirtinti" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}

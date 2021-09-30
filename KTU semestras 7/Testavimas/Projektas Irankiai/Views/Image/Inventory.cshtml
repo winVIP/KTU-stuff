@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Projektas_Irankiai.Models.TradableImage>
+@{
+    ViewBag.Title = "Inventory";
+}
+
+<h3>@ViewBag.Message</h3>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Pavadinimas</th>
+                <th>Saugojimo vieta</th>
+                <th>ID</th>
+                <th>Naudotojas</th>
+                <!--<th>Mainu uzklausa</th>-->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.name</td>
+                    <td>@item.path</td>
+                    <td>@item.id</td>
+                    <td>@item.userid</td>
+                    <!--<td>item.tradeid</td>-->
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

@@ -1,0 +1,43 @@
+﻿@model vytkun.ViewModels.UzsakovasEditViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Uzsakovo šalinimas</h2>
+
+<h3>Ar tikrai norite pašalinti šį Uzsakova?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.vardas)</td>
+                <td>@Html.DisplayNameFor(model => model.pavarde)</td>
+            </tr>
+        </dt>
+
+        <dd>
+            <tr>
+                <td>@Html.DisplayFor(model => model.vardas)</td>
+                <td>@Html.DisplayFor(model => model.pavarde)</td>
+            </tr>
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        @if (ViewBag.naudojama != null)
+        {
+            <h5 style="color:red">@ViewBag.naudojama</h5>
+        }
+        else
+        {
+            <input type="submit" value="Šalinti" class="btn btn-danger" />
+        }
+        @Html.ActionLink("Atgal į sąrašą", "Index", "Uzsakovas", new { @class = "btn btn-default" })
+    </div>
+    }
+</div>

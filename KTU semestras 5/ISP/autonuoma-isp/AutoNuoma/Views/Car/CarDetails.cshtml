@@ -1,0 +1,196 @@
+﻿@model AutoNuoma.Models.Car
+
+@{
+	ViewBag.Title = "CarDetails";
+	var id = Model.Id;
+}
+
+<h2>Automobilio informacijos langas</h2>
+<div>
+	<h4>Car</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.RentPoint.Address)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.RentPoint.Address)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.RentCost)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.RentCost)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Manufacturer)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Manufacturer)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Model)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Model)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.RegistrationNumber)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.RegistrationNumber)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.FirstRegistration)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.FirstRegistration)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.FuelType)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.FuelType)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.OdometerReading)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.OdometerReading)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Power)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Power)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.SeatCount)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.SeatCount)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.WindowType)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.WindowType)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.DoorCount)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.DoorCount)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.BodyType)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.BodyType)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.GearboxType)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.GearboxType)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.FuelConsumption)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.FuelConsumption)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.HasNavigationSystem)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.HasNavigationSystem)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.HasChildChair)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.HasChildChair)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.HasAC)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.HasAC)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.HasUSB)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.HasUSB)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.IsDamaged)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.IsDamaged)
+		</dd>
+
+	</dl>
+</div>
+
+
+	<div>
+		@Html.ActionLink("Automobilio redagavimas", "CarEdit")
+	</div>
+	<div>
+		@*@Html.ActionLink("Užklausos kūrimas", "RequestCreate", new { id = Model.Id })*@
+		@Html.ActionLink(
+		linkText: "Užklausos kūrimas",
+		actionName: "RequestCreate",
+		controllerName: "Request",
+		routeValues: new
+		{
+			id = Model.Id
+		},
+		htmlAttributes: null
+	)
+		@*<a href="/Request/RequestCreate/@id" />*@
+	</div>
+	<div>
+		@Html.ActionLink("Prenumeratos užsakymas", "SubscriptionCreate", "Subscription")
+	</div>

@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "NewsletterCreate";
+}
+
+<h2>Naujienlaiškio kūrimo langas</h2>
+@if (ViewBag.Error)
+{
+    <div class="bg-danger col-md-4 text-center">
+        <h4>Klaida</h4>
+    </div>
+}
+
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label class="col-md-12">Laiško tema</label>
+        <input type="text" class="form-control" name="LetterSubject" />
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-12">Laiško turinys</label>
+        <textarea class="form-control" name="LetterBody"></textarea>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Siųsti" class="btn btn-default" />
+    </div>
+}
+
+Jei duomenys netinkami -> Pranešimas

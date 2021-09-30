@@ -1,0 +1,112 @@
+﻿@model AutoNuoma.Models.Request
+
+@{
+    ViewBag.Title = "Ištrinti užklausą";
+}
+
+<h2>Ištrinti užklausą</h2>
+
+<h3>Ar tikrai norite ištrinti užklausą?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.Manufacturer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car.Manufacturer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OdometerReadingAtStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OdometerReadingAtStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OdometerReadingAtEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OdometerReadingAtEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartingDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndingDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deposit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deposit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsReturned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsReturned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPaid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPaid)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Ištrinti" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "RequestList")
+        </div>
+    }
+</div>

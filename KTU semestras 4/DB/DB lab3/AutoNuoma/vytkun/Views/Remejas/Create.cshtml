@@ -1,0 +1,132 @@
+﻿@model vytkun.ViewModels.DaugRemeju
+
+@{
+    ViewBag.Title = "Naujas Remejas";
+}
+
+    <h2>Naujas Remejas</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <fieldset>
+        <legend>Remeju Informacija</legend>
+        <table class="table-responsive" id="kainos_tbl">
+
+            <tr>
+                <th>Vardas</th>
+                <th>Pavarde</th>
+                <th>Telefonas</th>
+                <th>Kompanija</th>
+                <th>El. Pastas</th>
+                <th>Adresas</th>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.Editor("remejai[0].vardas", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("remejai[0].vardas", "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.Editor("remejai[0].pavarde", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("remejai[0].pavarde", "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.Editor("remejai[0].telefonas", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("remejai[0].telefonas", "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.Editor("remejai[0].kompanija", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("remejai[0].kompanija", "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.Editor("remejai[0].el_pastas", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("remejai[0].el_pastas", "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.Editor("remejai[0].adresas", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("remejai[0].adresas", "", new { @class = "text-danger" })
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" disabled value="1" id="hCount" />
+        <button id="prd" type="button" class="btn btn-info" onClick="prideti($('#hCount').val());"><i class="glyphicon-plus-sign"></i> Pridėti</button>
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Išsaugoti" style="margin-top: 5px;" class="btn btn-success" />
+            </div>
+        </div>
+    </fieldset>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Atgal į sąrašą »", "Index", "Uzsakovas", new { @class="btn btn-default"})
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    function prideti(sk) {
+
+            var tmp_row = `<tr>
+                <td>
+                    @Html.Editor("remejai[0].vardas", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("remejai[0].vardas", "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.Editor("remejai[0].pavarde", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("remejai[0].pavarde", "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.Editor("remejai[0].telefonas", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("remejai[0].telefonas", "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.Editor("remejai[0].kompanija", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("remejai[0].kompanija", "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.Editor("remejai[0].el_pastas", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("remejai[0].el_pastas", "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.Editor("remejai[0].adresas", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessage("remejai[0].adresas", "", new { @class = "text-danger" })
+                </td>
+                <td><button type="button" class="btn btn-danger" onclick="salinti(this);">šalinti</button></td>
+            </tr>`;
+
+        var new_tmp_row = tmp_row.replace(/\[(0)\]/g, "[" + sk + "]");
+
+            $("#kainos_tbl tr:last").after(new_tmp_row);
+
+            $('#hCount').val(Number($('#hCount').val()) + 1);
+
+            $(".date-picker").datepicker({ dateFormat: 'yy-mm-dd' });
+        };
+
+        function salinti(btn) {
+            $(btn).closest('tr').remove();
+
+
+            var cnt = 0;
+
+            $("#kainos_tbl tbody tr").each(function () {
+                var tmp_row = "<tr>" + $(this).html() + "</tr>";
+                var new_tmp_row = tmp_row.replace(/\[(.)\]/g, "[" + cnt + "]");
+                new_tmp_row = new_tmp_row.replace(/\_(.)\_/g, "_" + cnt + "_");
+                $(this).replaceWith(new_tmp_row);
+                cnt = cnt + 1;
+            });
+
+            $('#hCount').val(cnt);
+
+        }
+</script>
+}

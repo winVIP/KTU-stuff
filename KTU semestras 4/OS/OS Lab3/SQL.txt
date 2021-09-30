@@ -1,0 +1,400 @@
+SELECT [ALL | DISTINCT] <atributai>
+FROM <lentelės>
+[WHERE <sąlyga>]
+[GROUP BY <grupavimo sąlyga>]
+[HAVING <where_sąlyga>]
+[ORDER BY <rikiavimo sąlyga> [ASC | DESC]];
+-----------------------------------------------------------------------------------------------------------------
+	
+	Iš 2 lentelių
+SELECT studentai.vardas AS s_vardas, studentai.pavarde AS s_pavarde,
+destytojai.vardas AS d_vardas, destytojai.pavarde AS d_pavarde
+FROM studentai, destytojai
+WHERE studentai.vadovas = destytojai.tabnr;
+-----------------------------------------------------------------------------------------------------------------
+	
+	Iš 3 lentelių
+SELECT studentai.vardas AS s_vardas, studentai.pavarde AS spavarde,
+destytojai.vardas AS d_vardas, destytojai.pavarde AS d_pavarde
+FROM studentai, destytojai, destymai
+WHERE studentai.kodas = destymai.kodas AND
+	 destytojai.tabnr = destymai.tabnr;
+	     PK stulpelis = FK stulpelis
+----------------------------------------------------------------------------------------------------------------
+	
+	SELECT LIMIT |TOP | ROWNUM <=
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+LIMIT number;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+SELECT studentai.vardas AS s_vardas, studentai.pavarde AS spavarde,
+destytojai.vardas AS d_vardas, destytojai.pavarde AS d_pavarde
+FROM studentai, destytojai, destymai
+WHERE studentai.kodas = destymai.kodas AND
+destytojai.tabnr = destymai.tabnr
+LIMIT 10
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+SELECT * FROM studentai
+WHERE ROWNUM <=10 ;
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+SELECT TOP 5 percent * FROM studentai;
+--------------------------------------------------------------------------------------------------------------
+
+		Lentelių apjungimas
+		
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	INNER JOIN
+SELECT stulpeliai
+FROM t1
+INNER JOIN t2 ON join_condition1
+INNER JOIN t3 ON join_condition2
+...
+WHERE where_conditions;
+
+SELECT studentai.vardas AS s_vardas, studentai.pavarde AS s_pavarde,
+destytojai.vardas AS d_vardas, destytojai.pavarde AS d_pavarde
+FROM studentai INNER JOIN destytojai
+ON studentai.vadovas = destytojai.tabnr;
+	    PK stulpelis = FK stulpelis
+		
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	LEFT [OUTER] JOIN
+SELECT
+T1.c1, T1.c2, T2.c1, T2.c2
+FROM
+T1
+LEFT JOIN
+T2 ON T1.c1 = T2.c1;
+;
+
+SELECT destytojai.vardas AS d_vardas, destytojai.pavarde AS
+d_pavarde, studentai.vardas AS s_vardas, studentai.pavarde AS
+s_pavarde FROM destytojai LEFT JOIN studentai
+ON destytojai.tabnr = studentai.vadovas;
+		
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	RIGHT [OUTER] JOIN
+SELECT
+T1.c1, T1.c2, T2.c1, T2.c2
+FROM
+T1
+RIGTH JOIN
+T2 ON T1.c1 = T2.c1;
+
+SELECT studentai.vardas AS s_vardas, studentai.pavarde AS s_pavarde,
+destytojai.vardas AS d_vardas, destytojai.pavarde AS d_pavarde
+FROM destytojai RIGTH JOIN studentai
+ON destytojai.tabnr = studentai.vadovas;
+		
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	FULL OUTER JOIN - paima viska
+
+SELECT studentai.vardas AS s_vardas, studentai.pavarde AS s_pavarde,
+destytojai.vardas AS d_vardas, destytojai.pavarde AS d_pavarde
+FROM destytojai RIGTH JOIN studentai
+ON destytojai.tabnr = studentai.vadovas;
+UNION
+SELECT destytojai.vardas AS d_vardas, destytojai.pavarde AS
+d_pavarde, studentai.vardas AS s_vardas, studentai.pavarde AS
+s_pavarde FROM destytojai LEFT JOIN studentai
+ON destytojai.tabnr = studentai.vadovas;
+		
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	CROSS JOIN
+SELECT
+T1.c1, T1.c2, T2.c1, T2.c2
+FROM
+T1 CROSS JOIN T2
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+NATULAR JOIN - entelių apjungimas pagal sutampančius lentelių laukų vardus.
+SELECT
+T1.c1, T1.c2, T2.c1, T2.c2
+FROM
+T1
+NATURAL [{LEFT|RIGTH}] JOIN
+T2;
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	Sumos realizacija SQL
+(SELECT * FROM ktu)
+UNION [DISTINCT] [ALL]
+(SELECT pav AS pavarde, var AS
+vardas, apg AS apgyne FROM vu) ;
+
+(SELECT pavarde, vardas, apgyne, ‘KTU’ as Vieta FROM ktu)
+UNION (SELECT pav AS pavarde, var AS vardas, apg AS apgyne,’VU’ as
+Vieta FROM vu) ;
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	Skirtumo realizacija SQL
+(SELECT pavarde, vardas FROM ktu)
+EXCEPT
+(SELECT pavarde, vardas FROM vu) ;
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	Sankirtos realizacija SQL
+(SELECT pavarde, vardas FROM ktu)
+INTERSECT
+(SELECT pavarde, vardas FROM vu) ;
+
+--------------------------------------------------------------------------------------------------------------
+
+	Vidinės užklausos su pavienėmis grąžinamomis reikšmėmis
+
+ SELECT vardas
+ FROM prodiuseriai
+ WHERE kodas =
+	(SELECT prodiuseris
+	FROM filmai
+	WHERE pavadinimas = ‘Star Wars’
+	);
+yra kaip
+SELECT vardas
+FROM filmai, prodiuseriai
+WHERE pavadinimas = ‘Star Wars’ AND prodiuseris = kodas;
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	Vidinės užklausos su grupe grąžinamų reikšmių
+	
+Jei vidinė užklausa grąžina daugiau nei vieną reikšmę, tai norint jas
+palyginti reikia naudoti predikatus IN, ANY, ALL, EXISTS.
+
+Tarkime, kad turime kortežą s ir santykį R.
+1. s IN R yra teisinga tik tada, jei s yra lygus bent vienam kortežui
+santykyje R.
+SELECT vardas
+FROM prodiuseriai
+WHERE kodas IN
+	(SELECT prodiuseris
+	FROM filmai
+	WHERE (pavadinimas, metai) IN
+		(SELECT filmo_pav, filmo_metai
+		FROM atlikejai
+		WHERE aktoriaus_vard =‘Harrison Ford’
+		)
+	);
+yra kaip
+SELECT vardas
+FROM prodiuseriai, filmai, atlikejai
+WHERE kodas = prodiuseris AND
+	pavadinimas = filmo_pav AND
+	metai = filmo_metai AND
+	aktoriaus_vard = ‘Harrison Ford’;
+yra kaip
+SELECT vardas
+FROM prodiuseriai INNER JOIN filmai ON kodas = prodiuseris
+INNER JOIN atlikejai ON pavadinimas = filmo_pav
+WHERE metai = filmo_metai AND
+	aktoriaus_vard = ‘Harrison Ford’;
+
+2. s NOT IN R yra teisinga tik tada, jei s nėra lygus nei vienam
+kortežui santykyje R.
+
+
+3. s > ALL R yra teisinga tik tada, jei s yra didesnis už visus
+kortežus santykyje R. Vietoje ‘>’ gali būti panaudotas bet kuris
+kitas palyginimo operatorius. s <> ALL R ekvivalentiškas s NOT
+IN R.
+SELECT vardas
+FROM prodiuseriai
+WHERE pelnas < ALL
+	(SELECT pelnas
+	FROM prodiuseriai INNER JOIN filmai ON kodas = prodiuseris
+	WHERE metai = 1990 );
+
+4. s > ANY R yra teisinga tik tada, jei s yra didesnis bent už vieną
+kortežą santykyje R. Vietoje ‘>’ gali būti panaudotas bet kuris
+kitas palyginimo operatorius. s = ANY R ekvivalentiškas s IN R.
+SELECT vardas
+FROM prodiuseriai
+WHERE pelnas < ANY
+	(SELECT pelnas
+	FROM prodiuseriai, filmai
+	WHERE metai = 1990 AND kodas = prodiuseris
+	);
+
+5. EXISISTS R yra teisinga tik tada, jei R nėra tuščias.
+SELECT vardas, adresas, gimimo_data
+FROM aktoriai
+WHERE EXIST
+	(SELECT *
+	FROM atlikėjai INNER JOIN aktoriai ON vardas = aktoriaus_vard
+	WHERE metai = 1990 );
+
+	
+Vidinės užklausos FROM dalyje
+SELECT vardas
+FROM prodiuseriai INNER JOIN 
+	(SELECT prodiuseris
+	FROM filmai, atlikejai
+	WHERE pavadinimas = filmo_pav AND
+		metai = filmo_metai AND
+		aktoriaus_vard = ‘Harrison Ford’
+	) prod ON kodas = prod.prodiuseriai ;
+
+--------------------------------------------------------------------------------------------------------------
+	Rezultato rūšiavimas
+SELECT *
+FROM filmai
+WHERE studija =
+‘Disney’ AND
+metai = 1990
+ORDER BY trukme, pavadinimas ASC;
+
+SELECT *
+FROM filmai
+WHERE studija =
+‘Disney’ AND
+metai = 1990
+ORDER BY trukme, pavadinimas DESC;
+
+--------------------------------------------------------------------------------------------------------------
+Dublių šalinimas - raktinis žodis DISTINCT pašalina besidubliuojančius įrašus iš rezultato
+
+SELECT DISTINCT vardas
+FROM prodiuseriai INNER JOIN filmai ON kodas = prodiuseriai filmai
+INNER JOIN atlikejai ON pavadinimas = filmo_pav
+WHERE metai = filmo_metai AND
+	aktoriaus_vard = ‘Harrison Ford’;
+	
+Priešingai nei SELECT komanda, komandos UNION, INTRSECT ir EXCEPT pašalina
+dublius rezultate.
+Jei norima dublius išsaugoti, tai po raktinių žodžių UNION, INTERSECT bei EXCEPT
+turi sekti žodis ALL.
+(SELECT pavadinimas, metai FROM filmai)
+UNION ALL
+(SELECT filmo_pav AS pavadinimas, filmo_metai AS metai
+FROM atlikėjai) ;
+
+--------------------------------------------------------------------------------------------------------------
+	Agregavimo operatoriai
+	SUM, AVG, MIN, MAX, COUNT
+
+SELECT AVG (pelnas)
+FROM prodiuseriai;
+
+SELECT COUNT(*)
+FROM atlikejai;
+yra kaip
+SELECT COUNT(aktoriaus_vard)
+FROM atlikejai;
+
+--------------------------------------------------------------------------------------------------------------
+	Grupavimas
+	
+SELECT studija,metai, SUM(trukme)
+FROM filmai
+GROUP BY studija, metai;
+
+SELECT studija
+FROM filmai
+GROUP BY studija;
+yra kaip
+SELECT DISTINCT studija
+FROM filmai;
+
+SELECT vardas, SUM(trukme)
+FROM prodiuseriai INNER JOIN filmai ON prodiuseris = kodas
+GROUP BY vardas;
+
+SELECT vardas, SUM(trukme) AS trukme
+FROM prodiuseriai INNER JOIN filmai ON prodiuseris = kodas
+GROUP BY vardas;
+
+--------------------------------------------------------------------------------------------------------------
+	HAVING
+Svarbu:
+• Sąlyga HAVING dalyje taikoma tik įrašams papuolusiems į grupę.
+• tik tie atributai, kurie yra FROM (SELECT) dalyje, gali būti agreguoti HAVING dalyje, ir tik
+tie atributai, kurie yra GROUP BY dalyje gali būti neagreguoti HAVING dalyje.
+• HAVING nenaudojamas be GROUP BY
+
+SELECT vardas, SUM(trukme)
+FROM prodiuseriai INNER filmai
+ON prodiuseris = kodas
+GROUP BY vardas
+HAVING MIN(metai) < 1930;
+
+SELECT
+	uzsakymo_numeris,
+	count(prekes_id) AS prekiu_kiekis,
+	SUM(prekes_kaina) AS viso_kaina
+FROM
+	uzsakymo_detales
+GROUP BY uzsakymo_numeris
+HAVING viso_kaina > 1000;
+--------------------------------------------------------------------------------------------------------------
+	SKAICIAI
+ABS(n) Grąžina skaičiaus n absoliučią reikšmę
+ROUND(n, p) Suapvalina skaičių n nurodytu tikslumu p(skaičiai po kablelio)
+TRUNCATE(n, p) Grąžina tiek n skaičiaus skaitmenų po kablelio, kiek nurodyta parametre p
+	DATA IR LAIKAS
+YEAR(d) Grąžina 4 skaitmenų metus nurodytai datai d:
+SELECT A FROM R WHERE YEAR(data)>2000;
+MONTH(d) Grąžina 2 skaitmenų mėnesio numerį nurodytai datai d
+DAY(d) Grąžina 2 skaitmenų mdienos numerį nurodytai datai d
+CURDATE() Grąžina einamąją datą
+DAYNAME(d) Grąžina d datos savaitės dienos pavadinimą
+	KONTROLĖS FUNKCIJOS
+IF(a,b,c) Jei išraiška a yra TRUE, tai grąžina b reikšmę, priešingu atveju – c reikšmę
+IFNULL(a,b) Jei reikšmė a nėra NULL, tai grąžina a reikšmę, priešingu atveju – b reikšmę
+NULLIF(a,b) Jei reikšmė a=b, tai grąžina NULL, priešingu atveju – a reikšmę
+
+--------------------------------------------------------------------------------------------------------------
+	
+--------------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+{"Studentai":
+ [{"vardas":"Jonas",
+  "pavarde":"Petraitis",
+  "universitetas":"KTU",
+  "fakultetas":"Informatikos",
+  "kursas":"III kurse",
+  "text1":"Išlaikęs modulius:",
+  "moduliai":{"Informatika":"9","Filosofija":"NA","Imitacinis modeliavimas":"8"}},
+  {"Vardas":"Pranas",
+  "pavarde":"Petraitis",
+  "universitetas":"VDU",
+  "fakultetas":"Gamtos mokslų",
+  "kursas":"II kurse",
+  "text1":"Išlaikęs modulius:",
+  "moduliai":{"Informatika":"5","Filosofija":"9","Lotynų kalba":"5"}},
+  {"vardas":"Petras",
+  "pavarde":"Petraitis",
+  "universitetas":"KTU",
+  "fakultetas":"Statybos ir architektūros",
+  "kursas":"IV kurse",
+  "text1":"Išlaikęs modulius:",
+  "moduliai":{"Informatika":"7","Filosofija":"NA","Braižyba":"8"}}]
+}

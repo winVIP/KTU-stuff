@@ -1,0 +1,41 @@
+﻿@model IEnumerable<vytkun.ViewModels.BiudzetasListViewModel>
+
+@{
+    ViewBag.Title = "Biudzetai";
+}
+
+<h2>Projektai</h2>
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr style="background-color: lightblue">
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.esamas_biudzetas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.projektas)
+            </th>
+            <th style="width: 18%"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.esamas_biudzetas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.projektas)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

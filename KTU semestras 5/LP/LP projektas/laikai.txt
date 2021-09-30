@@ -1,0 +1,180 @@
+Su 20 tasku ir 1 gijom, programa užtruko: 
+222
+214
+209
+Vidurkis:
+215
+Su 20 tasku ir 2 gijom, programa užtruko: 
+112
+112
+109
+Vidurkis:
+111
+Su 20 tasku ir 4 gijom, programa užtruko: 
+420
+460
+359
+Vidurkis:
+413
+Su 40 tasku ir 1 gijom, programa užtruko: 
+1549
+1557
+1562
+Vidurkis:
+1556
+Su 40 tasku ir 2 gijom, programa užtruko: 
+800
+814
+809
+Vidurkis:
+807
+Su 40 tasku ir 4 gijom, programa užtruko: 
+1292
+1015
+1628
+Vidurkis:
+1311
+Su 60 tasku ir 1 gijom, programa užtruko: 
+5177
+5095
+5231
+Vidurkis:
+5167
+Su 60 tasku ir 2 gijom, programa užtruko: 
+2611
+2602
+2599
+Vidurkis:
+2604
+Su 60 tasku ir 4 gijom, programa užtruko: 
+2954
+3378
+3526
+Vidurkis:
+3286
+Su 80 tasku ir 1 gijom, programa užtruko: 
+12068
+11838
+11606
+Vidurkis:
+11837
+Su 80 tasku ir 2 gijom, programa užtruko: 
+6175
+6187
+5977
+Vidurkis:
+6113
+Su 80 tasku ir 4 gijom, programa užtruko: 
+5207
+5328
+5523
+Vidurkis:
+5352
+Su 100 tasku ir 1 gijom, programa užtruko: 
+22438
+22565
+22527
+Vidurkis:
+22510
+Su 100 tasku ir 2 gijom, programa užtruko: 
+11578
+11504
+11533
+Vidurkis:
+11538
+Su 100 tasku ir 4 gijom, programa užtruko: 
+8886
+9117
+8736
+Vidurkis:
+8913
+Su 120 tasku ir 1 gijom, programa užtruko: 
+38706
+38798
+38689
+Vidurkis:
+38731
+Su 120 tasku ir 2 gijom, programa užtruko: 
+20266
+19744
+19657
+Vidurkis:
+19889
+Su 120 tasku ir 4 gijom, programa užtruko: 
+14614
+14525
+14302
+Vidurkis:
+14480
+Su 140 tasku ir 1 gijom, programa užtruko: 
+61353
+61313
+61394
+Vidurkis:
+61353
+Su 140 tasku ir 2 gijom, programa užtruko: 
+32027
+32756
+31972
+Vidurkis:
+32251
+Su 140 tasku ir 4 gijom, programa užtruko: 
+22349
+21738
+21937
+Vidurkis:
+22008
+Su 160 tasku ir 1 gijom, programa užtruko: 
+91320
+91618
+91359
+Vidurkis:
+91432
+Su 160 tasku ir 2 gijom, programa užtruko: 
+46645
+46607
+46547
+Vidurkis:
+46599
+Su 160 tasku ir 4 gijom, programa užtruko: 
+31651
+31422
+31803
+Vidurkis:
+31625
+Su 180 tasku ir 1 gijom, programa užtruko: 
+124135
+128103
+125932
+Vidurkis:
+126056
+Su 180 tasku ir 2 gijom, programa užtruko: 
+65423
+65441
+66914
+Vidurkis:
+65926
+Su 180 tasku ir 4 gijom, programa užtruko: 
+44230
+44270
+44020
+Vidurkis:
+44173
+Su 200 tasku ir 1 gijom, programa užtruko: 
+170634
+170643
+171182
+Vidurkis:
+170819
+Su 200 tasku ir 2 gijom, programa užtruko: 
+90766
+91856
+92390
+Vidurkis:
+91670
+Su 200 tasku ir 4 gijom, programa užtruko: 
+61731
+61688
+60085
+Vidurkis:
+61168

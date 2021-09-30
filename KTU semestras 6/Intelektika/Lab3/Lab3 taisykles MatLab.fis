@@ -1,0 +1,55 @@
+[System]
+Name='Lab3 taisykles MatLab'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='som'
+
+[Input1]
+Name='Kaina'
+Range=[0 130000]
+NumMFs=3
+MF1='Maza':'trapmf',[0 0 30000 40000]
+MF2='Vidutine':'trimf',[30000 60000 90000]
+MF3='Didele':'trapmf',[80000 110000 130000 130000]
+
+[Input2]
+Name='Amzius'
+Range=[0 100]
+NumMFs=3
+MF1='nauja':'trapmf',[0 0 5 8]
+MF2='vidutinio':'trimf',[6 10 15]
+MF3='sena':'trapmf',[13 18 100 100]
+
+[Input3]
+Name='Galingumas'
+Range=[0 1000]
+NumMFs=3
+MF1='negalinga':'trapmf',[0 0 60 130]
+MF2='sportine':'trimf',[100 300 500]
+MF3='labaiGalinga':'trapmf',[400 700 1000 1000]
+
+[Output1]
+Name='NupirkimoTikimybe'
+Range=[0 100]
+NumMFs=3
+MF1='maza':'trapmf',[0 0 20 30]
+MF2='vidutine':'trimf',[20 40 60]
+MF3='didele':'trapmf',[50 70 100 100]
+
+[Rules]
+3 3 1, 1 (1) : 2
+2 2 2, 2 (1) : 2
+1 1 3, 3 (1) : 2
+3 3 2, 1 (1) : 1
+3 3 3, 1 (1) : 1
+2 1 2, 2 (1) : 1
+2 2 2, 2 (1) : 1
+1 2 3, 3 (1) : 1
+1 1 2, 3 (1) : 1

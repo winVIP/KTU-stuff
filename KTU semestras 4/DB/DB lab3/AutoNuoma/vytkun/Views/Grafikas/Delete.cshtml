@@ -1,0 +1,41 @@
+﻿@model vytkun.ViewModels.GrafikasEditViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Grafiko šalinimas</h2>
+
+<h3>Ar tikrai norite pašalinti šį grafika?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.pavadinimas)</td>
+            </tr>
+        </dt>
+
+        <dd>
+            <tr>
+                <td>@Html.DisplayFor(model => model.pavadinimas)</td>
+            </tr>
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        @if (ViewBag.naudojama != null)
+        {
+            <h5 style="color:red">@ViewBag.naudojama</h5>
+        }
+        else
+        {
+            <input type="submit" value="Šalinti" class="btn btn-danger" />
+        }
+        @Html.ActionLink("Atgal į sąrašą", "Index", "Grafikas", new { @class = "btn btn-default" })
+    </div>
+    }
+</div>

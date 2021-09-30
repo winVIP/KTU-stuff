@@ -1,0 +1,93 @@
+﻿@model vytkun.ViewModels.AtaskaitaViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Darbininkai pagal projektus</h2>
+<p><b>Parengta:</b> @DateTime.Now</p>
+
+@using (Html.BeginForm())
+{
+<div class="form-group">
+    <label>Projektai nuo: </label>
+    @*<input class="form-inline date-picker" type="datetime" name="nuo" value="@Model.nuo" />*@
+    @Html.EditorFor(model => model.nuo, new { @class = "date-picker" })
+    <label>Projektai iki: </label>
+    @*<input class="form-inline date-picker" type="datetime" name="iki" value="@Model.iki" />*@
+    @Html.EditorFor(model => model.iki, new { @class = "date-picker" })
+    <label>Projekto pavadinimas: </label>
+    @*<input class="form-inline date-picker" type="datetime" name="iki" value="@Model.iki" />*@
+    @Html.EditorFor(model => model.pavadinimas, new { htmlAttributes = new { @class = "form-control" } })
+    <input class="btn btn-default" type="submit" value="Atrinkti">
+</div>
+}
+
+
+    <table class="table table-striped">
+        <tr style="background-color:lightblue">
+            <th>
+                @Html.DisplayNameFor(model => model.darbuotojai[0].Vardas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.darbuotojai[0].Pavarde)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.darbuotojai[0].uzdPavadinimas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.darbuotojai[0].nuo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.darbuotojai[0].iki)
+            </th>
+        </tr>
+
+        @if (Model.darbuotojai.Count == 0)
+        {
+            <tr>
+                <td colspan="5" align="center"><b style="color:red;">Nurodytame laikotarpyje nera projektu</b></td>
+            </tr>
+        }
+
+        @for (int i = 0; i < Model.darbuotojai.Count; i++)
+        {
+            if (i == 0 || Model.darbuotojai[i].projektoPavadinimas != Model.darbuotojai[i-1].projektoPavadinimas)
+            {
+                <tr style="background-color: lightblue">
+                    <td colspan="5" align="center"><b>@Model.darbuotojai[i].projektoPavadinimas</b></td>
+                </tr>
+            }
+            <tr>
+                <td>@Model.darbuotojai[i].Vardas</td>
+                <td>@Model.darbuotojai[i].Pavarde</td>
+                <td>@Model.darbuotojai[i].uzdPavadinimas</td>
+                <td>@Model.darbuotojai[i].nuo</td>
+                <td>@Model.darbuotojai[i].iki</td>
+            </tr>
+        }
+
+        <tr style="background-color: lightblue">
+            <td height="10px;" colspan="5" align="center"><b>Bendra suma</b></td>
+        </tr>
+
+        <tr>
+            <td colspan="1"></td>
+            <td>
+                @Html.DisplayNameFor(modelItem => Model.darbuotojai[0].sumaDarbuotoju)
+                @Html.DisplayFor(modelItem => Model.darbuotojai[0].sumaDarbuotoju)
+            </td>
+            <td>
+                @Html.DisplayNameFor(modelItem => Model.darbuotojai[0].sumaProjektu)
+                @Html.DisplayFor(modelItem => Model.darbuotojai[0].sumaProjektu)
+            </td>
+            <td>
+                @Html.DisplayNameFor(modelItem => Model.darbuotojai[0].minDate)
+                @Html.DisplayFor(modelItem => Model.darbuotojai[0].minDate)
+            </td>
+            <td>
+                @Html.DisplayNameFor(modelItem => Model.darbuotojai[0].maxDate)
+                @Html.DisplayFor(modelItem => Model.darbuotojai[0].maxDate)
+            </td>
+        </tr>
+    </table>

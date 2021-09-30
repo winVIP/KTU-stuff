@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Projektas_Irankiai.Models.Image>
+@{
+    ViewBag.Title = "UploadedImagesView";
+}
+
+<h3>@ViewBag.Message</h3>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Pavadinimas</th>
+                <th>Ar Pazymetas</th>
+                <th>Saugojimo vieta</th>
+                <th>Ivertinimas</th>
+                <th>Ar Sablonas</th>
+                <th>Tekstas</th>
+                <th>ID</th>
+                <th>Ikelejas</th>
+                <th>Zymetojas</th>
+                <th>Remove</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.name</td>
+                    <td>@item.isMarked</td>
+                    <td>@item.path</td>
+                    <td>@item.rating</td>
+                    <td>@item.isTemplate</td>
+                    <td>@item.text</td>
+                    <td>@item.id</td>
+                    <td>@item.uploader</td>
+                    <td>@item.marker</td>
+                    <td>@Html.ActionLink("Redaguoti", "ImageEdit", "Image", new { id = item.id }, new { @class = "btn btn-primary btn-large" })</td>
+                    <td>@Html.ActionLink("Šalinti", "ImageDeletion", "Image", new { id = item.id }, new { @class = "btn btn-danger btn-large" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

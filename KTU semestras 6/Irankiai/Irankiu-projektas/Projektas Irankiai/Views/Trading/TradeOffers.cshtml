@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Projektas_Irankiai.Models.TradeOffer>
+@{
+    ViewBag.Title = "TradeOffers";
+}
+
+<h3>@ViewBag.Message</h3>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>@Html.LabelFor(model => model.First().message, htmlAttributes: new { @class = "control-label col-md-2" })</th>
+                <th>@Html.LabelFor(model => model.First().imageName, htmlAttributes: new { @class = "control-label col-md-2" })</th>
+                <th>@Html.LabelFor(model => model.First().user1Name, htmlAttributes: new { @class = "control-label col-md-2" })</th>
+                <th>@Html.LabelFor(model => model.First().user2Name, htmlAttributes: new { @class = "control-label col-md-2" })</th>
+                <!--<th>Mainu uzklausa</th>-->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.message</td>
+                    <td>@item.imageName</td>
+                    <td>@item.user1Name</td>
+                    <td>@item.user2Name</td>
+                    <!--<td>item.tradeid</td>-->
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

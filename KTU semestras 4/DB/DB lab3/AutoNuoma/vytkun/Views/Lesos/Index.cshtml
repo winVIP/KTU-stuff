@@ -1,0 +1,53 @@
+﻿@model IEnumerable<vytkun.ViewModels.LesosListViewModel>
+
+@{
+    ViewBag.Title = "Lesos";
+}
+
+    <h2>Lesos</h2>
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr style="background-color: lightblue">
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.suma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.uzsakovas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.remejas)
+            </th>
+            <th style="width: 18%"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.suma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.uzsakovas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.remejas)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

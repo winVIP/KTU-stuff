@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Kalbu projektas:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Kalbu_projektas_jar</output-path>
+    <root id="archive" name="Kalbu projektas.jar">
+      <element id="module-output" name="Kalbu projektas" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/antlr-4.8-complete.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,142 @@
+[
+  {
+    "marke": "Bmw",
+    "rida": 463064.89988372888,
+    "metai": 1999
+  },
+  {
+    "marke": "Mercedes-benz",
+    "rida": 238325.99736672174,
+    "metai": 2005
+  },
+  {
+    "marke": "Audi",
+    "rida": 94660.575778531187,
+    "metai": 2014
+  },
+  {
+    "marke": "Porsche",
+    "rida": 92999.240892473259,
+    "metai": 1981
+  },
+  {
+    "marke": "Opel",
+    "rida": 314013.671276166,
+    "metai": 1979
+  },
+  {
+    "marke": "Volkswagen",
+    "rida": 135016.07632963735,
+    "metai": 2002
+  },
+  {
+    "marke": "Ferrari",
+    "rida": 289022.82486158551,
+    "metai": 1971
+  },
+  {
+    "marke": "Fiat",
+    "rida": 277054.80194513442,
+    "metai": 1985
+  },
+  {
+    "marke": "Lamborghini",
+    "rida": 293163.99655917846,
+    "metai": 1995
+  },
+  {
+    "marke": "Bugatti",
+    "rida": 169308.39590230418,
+    "metai": 1984
+  },
+  {
+    "marke": "Peugeot",
+    "rida": 65191.08059126469,
+    "metai": 2001
+  },
+  {
+    "marke": "Renault",
+    "rida": 467289.75813243992,
+    "metai": 2011
+  },
+  {
+    "marke": "Citroen",
+    "rida": 493976.38230304065,
+    "metai": 1996
+  },
+  {
+    "marke": "Volvo",
+    "rida": 474454.99709549127,
+    "metai": 2018
+  },
+  {
+    "marke": "Koenigsegg",
+    "rida": 360972.42909528891,
+    "metai": 1975
+  },
+  {
+    "marke": "Aston-Martin",
+    "rida": 348847.59962970746,
+    "metai": 1983
+  },
+  {
+    "marke": "Mini",
+    "rida": 266437.21259498835,
+    "metai": 1972
+  },
+  {
+    "marke": "Land Rover",
+    "rida": 238319.55121751854,
+    "metai": 2009
+  },
+  {
+    "marke": "Range Rover",
+    "rida": 322986.24297743023,
+    "metai": 1995
+  },
+  {
+    "marke": "Mazda",
+    "rida": 72082.230156325837,
+    "metai": 1982
+  },
+  {
+    "marke": "Toyota",
+    "rida": 402472.73743267765,
+    "metai": 1995
+  },
+  {
+    "marke": "Subaru",
+    "rida": 171094.2653804525,
+    "metai": 1975
+  },
+  {
+    "marke": "Mitsubishi",
+    "rida": 308194.48586934921,
+    "metai": 2002
+  },
+  {
+    "marke": "Suzuki",
+    "rida": 110159.76132366795,
+    "metai": 1994
+  },
+  {
+    "marke": "Nissan",
+    "rida": 170627.136095719,
+    "metai": 2007
+  },
+  {
+    "marke": "Ford",
+    "rida": 413790.48019358446,
+    "metai": 2004
+  },
+  {
+    "marke": "Chevrolet",
+    "rida": 447057.10185089015,
+    "metai": 2001
+  },
+  {
+    "marke": "Dodge",
+    "rida": 155578.00752836186,
+    "metai": 2000
+  }
+]

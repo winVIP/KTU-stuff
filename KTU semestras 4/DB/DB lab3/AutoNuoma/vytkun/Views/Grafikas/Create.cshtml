@@ -1,0 +1,118 @@
+﻿@model vytkun.ViewModels.DaugGrafiku
+
+@{
+    ViewBag.Title = "Naujas Grafikas";
+    var psl_k_count = 0;
+}
+
+<h2>Naujas Grafikas</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <fieldset>
+        <legend>Grafiko Informacija</legend>
+        <table class="table-responsive" id="kainos_tbl">
+            <thead>
+                <tr>
+                    <th>Pavadinimas</th>
+                    <th>Nuo Kada</th>
+                    <th>Iki Kada</th>
+                    <th>Projektas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.Editor("grafikai[0].pavadinimas", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("grafikai[0].pavadinimas", "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.Editor("grafikai[0].nuo_kada", new { htmlAttributes = new { @class = "form-control date-picker" } })
+                        @Html.ValidationMessage("grafikai[0].nuo_kada", "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.Editor("grafikai[0].iki_kada", new { htmlAttributes = new { @class = "form-control date-picker" } })
+                        @Html.ValidationMessage("grafikai[0].iki_kada", "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.DropDownList("grafikai[0].fk_projektas", Model.projektaiList, "--------------", new { @class = "form-control" })
+                        @Html.ValidationMessage("grafikai[0].fk_projektas", "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="hidden" disabled value="1" id="hCount" />
+        <button id="prd" type="button" class="btn btn-info" onClick="prideti($('#hCount').val());"><i class="glyphicon-plus-sign"></i> Pridėti</button>
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Išsaugoti" style="margin-top: 5px;" class="btn btn-success" />
+            </div>
+        </div>
+    </fieldset>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Atgal į sąrašą »", "Index", "Grafikas", new { @class = "btn btn-default" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    function prideti(sk) {
+        
+        var tmp_row = `"<tr>
+                    <td>
+                        @Html.Editor("grafikai[0].pavadinimas", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessage("grafikai[0].pavadinimas", "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.Editor("grafikai[0].nuo_kada", new { htmlAttributes = new { @class = "form-control date-picker" } })
+                        @Html.ValidationMessage("grafikai[0].nuo_kada", "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.Editor("grafikai[0].iki_kada", new { htmlAttributes = new { @class = "form-control date-picker" } })
+                        @Html.ValidationMessage("grafikai[0].iki_kada", "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        @Html.DropDownList("grafikai[0].fk_projektas", Model.projektaiList, "--------------", new { @class = "form-control" })
+                        @Html.ValidationMessage("grafikai[0].fk_projektas", "", new { @class = "text-danger" })
+                    </td>
+                    <td><button type="button" class="btn btn-danger" onclick="salinti(this);">šalinti</button></td>
+                </tr>"`;
+
+        var new_tmp_row = tmp_row.replace(/\[(0)\]/g, "[" + sk + "]");
+
+        console.log(new_tmp_row);
+
+            $("#kainos_tbl tr:last").after(new_tmp_row);
+
+            $('#hCount').val(Number($('#hCount').val()) + 1);
+
+            $(".date-picker").datepicker({ dateFormat: 'yy-mm-dd' });
+        };
+
+        function salinti(btn) {
+            $(btn).closest('tr').remove();
+
+
+            var cnt = 0;
+
+            $("#kainos_tbl tbody tr").each(function () {
+                var tmp_row = "<tr>" + $(this).html() + "</tr>";
+                var new_tmp_row = tmp_row.replace(/\[(.)\]/g, "[" + cnt + "]");
+                new_tmp_row = new_tmp_row.replace(/\_(.)\_/g, "_" + cnt + "_");
+                $(this).replaceWith(new_tmp_row);
+                cnt = cnt + 1;
+            });
+
+            $('#hCount').val(cnt);
+
+        }
+    </script>
+}

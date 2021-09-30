@@ -1,0 +1,41 @@
+﻿@model AutoNuoma.Models.Request
+
+@{
+    ViewBag.Title = "RequestEdit";
+}
+
+<h2>Užklausos redagavimo langas</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    if (ViewBag.Error)
+    {
+        <div class="col-md-6 bg-danger">
+            <span class="text-uppercase">Klaida</span>
+        </div>
+    }
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2">Pradžios data</label>
+            <div class="col-md-10">
+                <input type="date" value="@ViewBag.StartingDate" class="form-control" name="StartingDate" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Pabaigos data</label>
+            <div class="col-md-10">
+                <input type="date" value="@ViewBag.EndingDate" class="form-control" name="EndingDate" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Patvirtinti" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+Jei yra klaidų -> Pranešimas

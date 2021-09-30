@@ -1,0 +1,23 @@
+C:\Users\vyten\Desktop\SMA Lab2\SMA Lab2\SMA Lab2\bin\Debug\netcoreapp2.1\SMA Lab2.deps.json
+C:\Users\vyten\Desktop\SMA Lab2\SMA Lab2\SMA Lab2\bin\Debug\netcoreapp2.1\SMA Lab2.runtimeconfig.json
+C:\Users\vyten\Desktop\SMA Lab2\SMA Lab2\SMA Lab2\bin\Debug\netcoreapp2.1\SMA Lab2.runtimeconfig.dev.json
+C:\Users\vyten\Desktop\SMA Lab2\SMA Lab2\SMA Lab2\bin\Debug\netcoreapp2.1\SMA Lab2.dll
+C:\Users\vyten\Desktop\SMA Lab2\SMA Lab2\SMA Lab2\bin\Debug\netcoreapp2.1\SMA Lab2.pdb
+C:\Users\vyten\Desktop\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.csprojAssemblyReference.cache
+C:\Users\vyten\Desktop\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.csproj.CoreCompileInputs.cache
+C:\Users\vyten\Desktop\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.AssemblyInfoInputs.cache
+C:\Users\vyten\Desktop\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.AssemblyInfo.cs
+C:\Users\vyten\Desktop\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.dll
+C:\Users\vyten\Desktop\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.pdb
+E:\Vytenio\KTU 5 semestras\SMA Lab2\SMA Lab2\SMA Lab2\bin\Debug\netcoreapp2.1\SMA Lab2.deps.json
+E:\Vytenio\KTU 5 semestras\SMA Lab2\SMA Lab2\SMA Lab2\bin\Debug\netcoreapp2.1\SMA Lab2.runtimeconfig.json
+E:\Vytenio\KTU 5 semestras\SMA Lab2\SMA Lab2\SMA Lab2\bin\Debug\netcoreapp2.1\SMA Lab2.runtimeconfig.dev.json
+E:\Vytenio\KTU 5 semestras\SMA Lab2\SMA Lab2\SMA Lab2\bin\Debug\netcoreapp2.1\SMA Lab2.dll
+E:\Vytenio\KTU 5 semestras\SMA Lab2\SMA Lab2\SMA Lab2\bin\Debug\netcoreapp2.1\SMA Lab2.pdb
+E:\Vytenio\KTU 5 semestras\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.csprojAssemblyReference.cache
+E:\Vytenio\KTU 5 semestras\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.AssemblyInfoInputs.cache
+E:\Vytenio\KTU 5 semestras\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.AssemblyInfo.cs
+E:\Vytenio\KTU 5 semestras\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.csproj.CoreCompileInputs.cache
+E:\Vytenio\KTU 5 semestras\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.dll
+E:\Vytenio\KTU 5 semestras\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.pdb
+E:\Vytenio\KTU 5 semestras\SMA Lab2\SMA Lab2\SMA Lab2\obj\Debug\netcoreapp2.1\SMA Lab2.genruntimeconfig.cache

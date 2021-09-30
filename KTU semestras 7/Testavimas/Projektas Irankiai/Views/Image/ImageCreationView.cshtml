@@ -1,0 +1,27 @@
+﻿@model Projektas_Irankiai.Models.selectImageAndText
+@{
+    ViewBag.Title = "ImageCreationView";
+    int index = 0;
+}
+
+<h3>@ViewBag.Message</h3>
+@using (Html.BeginForm("ImageCreationView", "Image", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.SelectedItemId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.SelectedItemId, new SelectList(Model.Items, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "country" })
+            @Html.ValidationMessageFor(model => model.SelectedItemId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.text, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.text, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.text, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <p>@ViewBag.ErrorMessage</p>
+    <input type="submit" value="Submit" />
+}
+

@@ -1,0 +1,61 @@
+﻿@model Projektas_Irankiai.Models.Image
+
+
+@using (Html.BeginForm("ImageUpload", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <hr />
+        <hr />
+        <hr />
+        <br />
+        <h1>Įkelti paveikslėlį</h1>
+        <br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tag, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="radio" id="cats" name="tag" value="cats">
+                <label for="cat">Cat</label>&ensp;
+
+                <input type="radio" id="dogs" name="tag" value="dogs">
+                <label for="cat">Dog</label>&ensp;
+
+                <input type="radio" id="other" name="tag" value="other">
+                <label for="other">Other</label>&ensp;
+                <br>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.imageFile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="imageFile" title="imageFile" id="imageFile" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Įkelti" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

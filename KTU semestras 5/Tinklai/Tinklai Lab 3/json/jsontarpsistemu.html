@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+	</head>
+<body>
+	<b>Duomenų perdavimas JSON formatu tarp sistemų</b><br>
+	Per serveryje veikiančią programą <b>api.php</b> paimam paskutinius įrašus iš lentelės "zinutesLAB3"<br><br>
+<div class="form">
+      <label for="vardas">Įvesk vardą: </label><input type="text" id="vardas" class="vardas">
+	  <label for="kiek">Kiek paskutinių įrašų: </label><input type="number" id="kiek" class="kiek">
+      <input type="submit" value="Vykdyti" class="spausk">
+</div>
+	<br><b>Siunčiama užklausa į http://localhost/Lab3/api.php:</b><br><p id="uzklausa"></p>
+	<b>Atsakymas JSON formate:</b><br><p id="jsonats"></p>
+	<b>Rasti tokie pasiūlymai:</b><br><p id="lentele"></p>
+
+<script>
+const lspausk = document.querySelector('.spausk');    //mygtukas Vykdyti
+const lvardas = document.querySelector('.vardas');          // formos laukai
+const lkiek = document.querySelector('.kiek');
+lvardas.value=''; lkiek.value='';						  // kas juose įrašyta
+lvardas.focus();
+lspausk.addEventListener('click', ieskok);            //paspaude Vykdyti
+function ieskok() {
+	let vardas = lvardas.value;
+	let kiek = lkiek.value;
+	let url = "http://localhost/Lab3/api.php";
+	let ats,string_ats,x,txt;
+	url+="/?vardas="+vardas+"&kiek="+kiek;                      			// prijungiam GET užklausai parametrus ?vardas=abc&kiek=123
+	document.getElementById("uzklausa").innerHTML=url+"<br>";		// parodom kokia užklausa siunčiama
+
+  fetch(url)
+	  .then(response => {
+    return response.json()
+  })
+  .then(data => {
+    string_ats=JSON.stringify(data);							// objektą data paverciam JSON tekstu
+	document.getElementById("jsonats").innerHTML=string_ats;    // parodom gautą atsakymą JSON formatu
+   // console.log(data);										 //derinimui
+ 	
+	// formuojam rezultatą html lentele kintamajame txt
+	txt=	'<table border="1" align="center" width="50%" class="table table-striped" id="lentele">'+
+		'<tr><th>ID</th><th>Vardas</th><th>Kam</th><th>Data</th><th>Zinute</th></tr>';
+    for (x in data) {
+		txt += 
+			"<tr><td>" + data[x].id + "</td><td>" + data[x].vardas + 
+			"</td><td>" + data[x].kam +"</td><td>" + data[x].data +"</td><td>" + data[x].zinute +"</td></tr>";
+    }
+    txt += "</table>"    
+    document.getElementById("lentele").innerHTML=txt;          // parodom lentelę
+
+  })
+  .catch(err => {
+   document.getElementById("lentele").innerHTML+="Klaida:"+err;
+   console.log(err);
+  })
+	}
+</script>
+
+</body>
+</html>

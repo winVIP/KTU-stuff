@@ -1,0 +1,311 @@
+// Tutorial Bot #10: Food Finder
+// Step 5: exploiting the nearest food item
+
+class ControlFunction {
+    def respond(input: String): String = {
+        val (opcode, paramMap) = CommandParser(input)
+        if( opcode == "React" ) {
+            val viewString = paramMap("view")
+            val view = View(viewString)
+            val generation = paramMap("generation").toInt
+            var quarter = view.moveDirection
+            var result = "Log(text=As mini)"
+            
+            if( generation == 0 ) {
+                if(quarter == 0){
+                    result = "Move(direction=0:-1)|Log(text=" + paramMap("generation").toInt + ")"
+                }
+                else if(quarter == 1){
+                    result = "Move(direction=0:1)|Log(text=" + paramMap("generation").toInt + ")"
+                }
+                else if(quarter == 2){
+                    result = "Move(direction=-1:0)|Log(text=" + paramMap("generation").toInt + ")"
+                }
+                else if(quarter == 3){
+                    result = "Move(direction=1:0)|Log(text=" + paramMap("generation").toInt + ")"
+                }
+                else{
+                    result = "Log(text= Nei vienas " + paramMap("generation").toInt + ")"
+                }
+                
+                if(paramMap("time").toInt % 100 == 0){
+                    result = result + "|Spawn(direction=1:0,energy=500,heading=0:-1)"
+                }
+                result
+            } else {
+                /*
+                if(quarter == 0){
+                    result = "Move(direction=0:-1)|Log(text=" + quarter + " As mini)"
+                }
+                else if(quarter == 1){
+                    result = "Move(direction=0:1)|Log(text=" + quarter + " As mini)"
+                }
+                else if(quarter == 2){
+                    result = "Move(direction=-1:0)|Log(text=" + quarter + " As mini)"
+                }
+                else if(quarter == 3){
+                    result = "Move(direction=1:0)|Log(text=" + quarter + " As mini)"
+                }
+                else{
+                    result = "Log(text= Nei vienas " + quarter + " As mini)"
+                }
+                */
+                val heading = paramMap("heading")
+                "Move(direction=" + heading + ")"
+            }
+            
+                        
+            
+        } 
+        else ""
+    }
+}
+
+case class View(cells: String) {
+    val size = math.sqrt(cells.length).toInt
+    val center = XY(size/2, size/2)
+
+    def offsetToNearest(c: Char) = {
+        var nearestPosOpt : Option[XY] = None
+        var nearestDistance = Double.MaxValue
+        for(i <- 0 until cells.length) {
+            if(c == cells(i)) {
+                val pos = absPosFromIndex(i)
+                val distanceToCenter = pos.distanceTo(center)
+                if(distanceToCenter < nearestDistance) {
+                    nearestDistance = distanceToCenter
+                    nearestPosOpt = Some(pos - center)
+                }
+            }
+        }
+        nearestPosOpt
+    }
+    
+    def lenth(index: Int) = {
+        val pos = absPosFromIndex(index)
+        val distanceToCenter = pos.distanceTo(center)
+        distanceToCenter
+    }
+    
+    def moveDirection: Int = {
+        var biggestValue = -2147483648
+        var currentValue = 0
+        var biggestValueQuarter = 0
+        var ciklai = 0
+        for(i <- 0 to size * (size / 2) - 1) {
+            if(cells(i) == 'P') {
+                currentValue += 10000 / lenth(i).toInt
+            }
+            else if(cells(i) == 'p') {
+                currentValue -= 1000 / lenth(i).toInt
+            }
+            else if(cells(i) == 'B') {
+                currentValue += 20000 / lenth(i).toInt
+            }
+            else if(cells(i) == 'b') {
+                currentValue -= 1500 / lenth(i).toInt
+            }
+            else if(cells(i) == 'W') {
+                currentValue -= 40 / lenth(i).toInt
+            }
+            else if(cells(i) == 's') {
+                currentValue += 150 / lenth(i).toInt
+            }
+            else if(cells(i) == 'm') {
+                currentValue -= 200 / lenth(i).toInt
+            }
+            else if(cells(i) == 'S') {
+                currentValue -= 150 / lenth(i).toInt
+            }
+            //ciklai += 1
+        }
+        if(biggestValue < currentValue){
+            biggestValue = currentValue
+            biggestValueQuarter = 0
+        }
+        currentValue = 0
+        for(i <- size * (size / 2) + size to size * size - 1) {
+            if(cells(i) == 'P') {
+                currentValue += 10000 / lenth(i).toInt
+            }
+            else if(cells(i) == 'p') {
+                currentValue -= 1000 / lenth(i).toInt
+            }
+            else if(cells(i) == 'B') {
+                currentValue += 20000 / lenth(i).toInt
+            }
+            else if(cells(i) == 'b') {
+                currentValue -= 1500 / lenth(i).toInt
+            }
+            else if(cells(i) == 'W') {
+                currentValue -= 40 / lenth(i).toInt
+            }
+            else if(cells(i) == 's') {
+                currentValue += 150 / lenth(i).toInt
+            }
+            else if(cells(i) == 'm') {
+                currentValue -= 200 / lenth(i).toInt
+            }
+            else if(cells(i) == 'S') {
+                currentValue -= 150 / lenth(i).toInt
+            }
+            //ciklai += 1
+        }
+        if(biggestValue < currentValue){
+            biggestValue = currentValue
+            biggestValueQuarter = 1
+        }
+        currentValue = 0
+        for(i <- 0 to size - 1) {
+            for(j <- 0 to size / 2 - 1) {
+                if(cells(i * (size - 1) + j) == 'P') {
+                    currentValue += 10000 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 'p') {
+                    currentValue -= 1000 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 'B') {
+                    currentValue += 20000 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 'b') {
+                    currentValue -= 1500 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 'W') {
+                    currentValue -= 40 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 's') {
+                    currentValue += 150 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 'm') {
+                    currentValue -= 200 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 'S') {
+                    currentValue -= 150 / lenth(i * (size - 1) + j).toInt
+                }
+                //ciklai += 1
+            }
+        }
+        if(biggestValue < currentValue){
+            biggestValue = currentValue
+            biggestValueQuarter = 2
+        }
+        currentValue = 0
+        for(i <- 0 to size - 1) {
+            for(j <- size / 2 + 1 to size - 1) {
+                if(cells(i * (size - 1) + j) == 'P') {
+                    currentValue += 10000 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 'p') {
+                    currentValue -= 1000 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 'B') {
+                    currentValue += 20000 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 'b') {
+                    currentValue -= 1500 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 'W') {
+                    currentValue -= 40 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 's') {
+                    currentValue += 150 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 'm') {
+                    currentValue -= 200 / lenth(i * (size - 1) + j).toInt
+                }
+                else if(cells(i * (size - 1) + j) == 'S') {
+                    currentValue -= 150 / lenth(i * (size - 1) + j).toInt
+                }
+                //ciklai += 1
+            }
+        }
+        if(biggestValue < currentValue){
+            biggestValue = currentValue
+            biggestValueQuarter = 3
+        }
+        
+        biggestValueQuarter
+    }
+
+    def apply(relPos: XY) = cellAtRelPos(relPos)
+
+    def indexFromAbsPos(absPos: XY) = absPos.x + absPos.y * size
+    def absPosFromIndex(index: Int) = XY(index % size, index / size)
+    def absPosFromRelPos(relPos: XY) = relPos + center
+    def cellAtAbsPos(absPos: XY) = cells.apply(indexFromAbsPos(absPos))
+
+    def indexFromRelPos(relPos: XY) = indexFromAbsPos(absPosFromRelPos(relPos))
+    def relPosFromAbsPos(absPos: XY) = absPos - center
+    def relPosFromIndex(index: Int) = relPosFromAbsPos(absPosFromIndex(index))
+    def cellAtRelPos(relPos: XY) = cells(indexFromRelPos(relPos))
+}
+
+case class XY(x: Int, y: Int) {
+    override def toString = x + ":" + y
+
+    def isNonZero = x!=0 || y!=0
+    def isZero = x==0 && y==0
+    def isNonNegative = x>=0 && y>=0
+
+    def updateX(newX: Int) = XY(newX, y)
+    def updateY(newY: Int) = XY(x, newY)
+
+    def addToX(dx: Int) = XY(x+dx, y)
+    def addToY(dy: Int) = XY(x, y+dy)
+
+    def +(pos: XY) = XY(x+pos.x, y+pos.y)
+    def -(pos: XY) = XY(x-pos.x, y-pos.y)
+    def *(factor: Double) = XY((x*factor).intValue, (y*factor).intValue)
+
+    def distanceTo(pos: XY) : Double = (this-pos).length
+    def length : Double = math.sqrt(x*x + y*y)
+
+    def signum = XY(x.signum, y.signum)
+
+    def negate = XY(-x, -y)
+    def negateX = XY(-x, y)
+    def negateY = XY(x, -y)
+
+}
+object XY {
+    def apply(s: String) : XY = {
+        val xy = s.split(':').map(_.toInt) // e.g. "-1:1" => Array(-1,1)
+        XY(xy(0), xy(1))
+    }
+
+    val Zero = XY(0,0)
+    val One =  XY(1,1)
+
+    val Right      = XY( 1,  0)
+    val RightUp    = XY( 1, -1)
+    val Up         = XY( 0, -1)
+    val UpLeft     = XY(-1, -1)
+    val Left       = XY(-1,  0)
+    val LeftDown   = XY(-1,  1)
+    val Down       = XY( 0,  1)
+    val DownRight  = XY( 1,  1)
+}
+
+object CommandParser {
+    def apply(command: String) = {
+        def splitParam(param: String) = {
+            val segments = param.split('=')
+            if( segments.length != 2 )
+                throw new IllegalStateException("invalid key/value pair: " + param)
+            (segments(0),segments(1))
+        }
+
+        val segments = command.split('(')
+        if( segments.length != 2 )
+            throw new IllegalStateException("invalid command: " + command)
+
+        val params = segments(1).dropRight(1).split(',')
+        val keyValuePairs = params.map( splitParam ).toMap
+        (segments(0), keyValuePairs)
+    }
+}
+
+class ControlFunctionFactory {
+    def create = new ControlFunction().respond _
+}
+

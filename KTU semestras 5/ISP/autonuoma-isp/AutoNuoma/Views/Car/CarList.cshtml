@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AutoNuoma.Models.Car>
+
+@{
+	ViewBag.Title = "CarList";
+}
+
+<h2>Automobilių sąrašo langas</h2>
+<div>Paieška</div>
+<div>Filtravimas</div>
+
+<table class="table">
+	<tr>
+		<th>Gamintojas</th>
+		<th>Modelis</th>
+		<th>Kaina</th>
+		<th>Kuro tipas</th>
+		<th>Valdymas</th>
+		<th>Kita informacija</th>
+		<th>Trinti įrašą</th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@item.Manufacturer</td>
+			<td>@item.Model</td>
+			<td>@item.RentCost</td>
+			<td>@item.FuelType</td>
+			<td>@item.GearboxType</td>
+			<td>@Html.ActionLink("Detaliau", "CarDetails", new { id = item.Id })</td>
+			<td>
+				@Html.ActionLink("Trinti", "CarDelete", new { id = item.Id }, new { onclick = "return confirm('Ar tikrai norite ištrinti šį įrašą?');" })
+			</td>
+		</tr>
+	}
+</table>
+<div>
+	@Html.ActionLink("Automobilio kūrimas", "CarCreate")
+</div>
+<div>
+	@Html.ActionLink("Automobilio informacija", "CarDetails")
+</div>
+<div>
+	@Html.ActionLink("Automobilio ištrinimas", "CarDelete")
+</div>
+

@@ -1,0 +1,7 @@
+SELECT projektai.Pavadinimas as "Projekto pavadinimas", darbuotojai.Vardas AS "Vardas", 
+darbuotojai.Pavarde AS "Pavarde", grafikai.Nuo_kada AS "Nuo", grafikai.Iki_kada AS "Iki", uzduotys.Pavadinimas AS "Uzduoties pavadinimas"
+FROM projektai
+LEFT JOIN grafikai ON projektai.Nr=grafikai.fk_Projektas2
+LEFT JOIN uzduotys ON grafikai.Nr=uzduotys.fk_Grafikas
+LEFT JOIN darbuotojai ON uzduotys.Nr=darbuotojai.fk_Uzduotis2
+WHERE projektai.Pavadinimas="posuere"

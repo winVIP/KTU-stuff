@@ -1,0 +1,17 @@
+﻿@model Projektas_Irankiai.Models.Image
+@{
+    ViewBag.Title = "ImageDeletion";
+
+    var imagePath = "/ImagesUploaded" + Model.path.Replace('\\', '/');
+}
+
+<h3>@ViewBag.Message</h3>
+
+<img src="@imagePath"/>
+<br>
+@using (Html.BeginForm("ImageDeletion", "Image", FormMethod.Post))
+{
+    <h3>@Model.path</h3>
+    <input type="submit" value="Taip" />
+    <button type="button">Ne</button>
+}

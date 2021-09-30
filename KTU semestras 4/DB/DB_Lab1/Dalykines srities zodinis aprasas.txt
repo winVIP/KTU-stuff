@@ -1,0 +1,14 @@
+﻿Nr. 106
+Tema: Projektai
+Sritis: Valdymas
+
+Projektas turi būti užsakomas užsakovo. Užsakovas gali užsakyti tik vieną projektą. 
+Projekte gali dalyvauti daug dalyvių. Dalyviai turi dalyvauti bent viename projekte.
+Projektas turi būti vykdomas pagal bent pagal vieną grafiko įrašą. Grafiko įrašas gali priklausyti tik vienam projektui.
+Užduotis atliekama pagal vieną grafiko įrašą. Pagal vieną grafiko įrašą gali turi būti atliekama bent viena užduotis.
+Užduoti atlieka bent vienas darbuotojas. Darbuotojas vienu laiko tarpu gali atlikinėti tik vieną užduotį.
+Darbuotojas vienu laiko tarpu gali užimti tik vieną rolę. Ta pačia rolę gali turėti bent vienas darbuotojas.
+Viena užduotis gali reikalauti daug išlaidų. Vienas išlaidos įrašas gali priklausyti tik vienai užduočiai.
+Užsakovas turi bent viena kartą skirti pinigus biudžetui.
+Rėmėjas gali bent vieną kartą skirti pinigus biudžetui. Biudžetas gali turėti daug rėmėjų.
+Iš biudžeto pinigai gali būti skiriami daugeliui išlaidų. Islaidom skirti imami tik iš vieno projekto biudžeto.

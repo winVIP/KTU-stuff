@@ -1,0 +1,34 @@
+﻿@model Projektas_Irankiai.Models.NewTradeOffer
+@{
+    ViewBag.Title = "NewTradeOffer";
+    int index = 0;
+}
+
+<h3>@ViewBag.Message</h3>
+@using (Html.BeginForm("NewTradeOffer", "Trading", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.SelectedUserId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.SelectedUserId, new SelectList(Model.users, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "country" })
+            @Html.ValidationMessageFor(model => model.SelectedUserId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SelectedImageId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.SelectedImageId, new SelectList(Model.images, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "country" })
+            @Html.ValidationMessageFor(model => model.SelectedImageId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.text, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.text, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.text, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <p>@ViewBag.ErrorMessage</p>
+    <input type="submit" value="Submit" />
+}
+

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<AutoNuoma.Models.Member>
+
+@{
+    ViewBag.Title = "MemberList";
+}
+
+<h2>Narių sąrašas</h2>
+<table class="table">
+    <tr>
+        <th>Vardas</th>
+        <th>Pavarde</th>
+        <th>E. Paštas</th>
+        <th>Telefonas</th>
+        <th>Naujienlaiškis</th>
+        <th>Kita informacija</th>
+        <th>Trinti įrašą</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.Email</td>
+            <td>@item.PhoneNumber</td>
+            <td>@item.HasNewsletter</td>
+            <td>@Html.ActionLink("Detaliau", "MemberDetails", new { id = item.Id })</td>
+            <td>
+                @Html.ActionLink("Trinti", "MemberDelete", new { id = item.Id }, new { onclick = "return confirm('Ar tikrai norite ištrinti šį įrašą?');" })
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,4 @@
+﻿ld Ilgas Neilgas Saldus Nesaldus Geltonas NeGeltonas
+1 400 100 350 150 450 50
+2 0 300 150 150 300 0 300
+3 100 100 150 50 50 150 200

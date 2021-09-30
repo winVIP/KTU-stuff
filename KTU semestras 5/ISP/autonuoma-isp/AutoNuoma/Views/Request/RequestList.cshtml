@@ -1,0 +1,30 @@
+﻿@model IEnumerable<AutoNuoma.Models.Request>
+
+@{
+    ViewBag.Title = "RequestList";
+}
+
+<h2>Užklausų sąrašas</h2>
+<table class="table">
+    <tr>
+        <th>Vardas</th>
+        <th>Pavarde</th>
+        <th>Modelis</th>
+        <th>Depozitas</th>
+        <th>Ar Patvirtintas</th>
+        <th>Detaliau</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.User.FirstName</td>
+            <td>@item.User.LastName</td>
+            <td>@item.Car.Model</td>
+            <td>@item.Deposit</td>
+            <td>@item.IsConfirmed</td>
+            <td>
+                @Html.ActionLink("Detaliau", "RequestDetails", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

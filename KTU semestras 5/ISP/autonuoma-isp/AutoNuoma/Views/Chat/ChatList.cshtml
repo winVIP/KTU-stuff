@@ -1,0 +1,30 @@
+﻿@model IEnumerable<AutoNuoma.Models.Chat>
+
+@{
+	ViewBag.Title = "ChatList";
+}
+
+<h2>Pokalbių sąrašas</h2>
+<table class="table">
+	<tr>
+		<th>Vardas</th>
+		<th>Pavarde</th>
+		<th>Ar uždaryta</th>
+		<th>Atsakyti</th>
+		<th>Uždaryti</th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>@item.User.FirstName</td>
+			<td>@item.User.LastName</td>
+			<td>@item.IsCaseClosed</td>
+			<td>
+				@Html.ActionLink("Atsakyti", "ChatAdmin", new { chatID = item.Id })
+			</td>
+			<td>
+				@Html.ActionLink("Uždaryti", "ChatClose", new { chatID = item.Id })
+			</td>
+		</tr>
+	}
+</table>

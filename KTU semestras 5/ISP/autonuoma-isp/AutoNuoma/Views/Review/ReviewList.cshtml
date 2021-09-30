@@ -1,0 +1,28 @@
+﻿@model IEnumerable<AutoNuoma.Models.Review>
+
+@{
+    ViewBag.Title = "ReviewList";
+}
+
+<h2>Atsiliepimų sąrašas</h2>
+<table class="table">
+    <tr>
+        <th>Data</th>
+        <th>Pavadinimas</th>
+        <th>Ivertinimas</th>
+        <th>Ar patvirtinta</th>
+        <th>Tvirtinti įrašą</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Date</td>
+            <td>@item.Title</td>
+            <td>@item.Evaluation</td>
+            <td>@item.IsApproved</td>
+            <td>
+                @Html.ActionLink("Tvirtinti", "ReviewCheck", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

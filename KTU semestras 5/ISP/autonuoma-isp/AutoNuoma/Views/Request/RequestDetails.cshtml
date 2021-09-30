@@ -1,0 +1,61 @@
+﻿@model AutoNuoma.Models.Request
+
+@{
+    ViewBag.Title = "RequestDetails";
+}
+
+<h2>Užklausos langas</h2>
+<table class="table">
+    <tr>
+        <th>Odometras pradžioje</th>
+        <th>Odometras pabaigoje</th>
+        <th>Pradžios data</th>
+        <th>Pabaigos data</th>
+        <th>Depozitas</th>
+        <th>Ar Patvirtintas</th>
+        <th>Ar grąžinta</th>
+        <th>Ar sumokėta</th>
+        <th>Naudotojo vardas</th>
+        <th>Modelis</th>
+    </tr>
+    <tr>
+        <td>@Model.OdometerReadingAtStart</td>
+        <td>@Model.OdometerReadingAtEnd</td>
+        <td>@Model.StartingDate</td>
+        <td>@Model.EndingDate</td>
+        <td>@Model.Deposit</td>
+        <td>@Model.IsConfirmed</td>
+        <td>@Model.IsReturned</td>
+        <td>@Model.IsPaid</td>
+        <td>@Model.User.FirstName @Model.User.LastName</td>
+        <td>@Model.Car.Model</td>
+    </tr>
+</table>
+    Jei narys:
+<div>
+    @Html.ActionLink(
+    linkText: "Redaguoti",
+    actionName: "RequestEdit",
+    controllerName: "Request",
+    routeValues: new { id = Model.Id },
+    htmlAttributes: null
+)
+</div>
+<div>
+    @Html.ActionLink("Atsiliepimo kūrimas", "ReviewCreate", "Review")
+</div>
+<div>
+    @Html.ActionLink(
+    linkText: "Ištrinti",
+    actionName: "Delete",
+    controllerName: "Request",
+    routeValues: new { id = Model.Id },
+    htmlAttributes: null
+)
+</div>
+<div>
+    @Html.ActionLink("Patvirtinti", "RequestAccept", new { id = Model.Id }, new { onclick = "return alert('Patvirtinta');" })
+</div>
+<div>
+    @Html.ActionLink("Atmesti", "RequestDeny", new { id = Model.Id }, new { onclick = "return alert('Atmesta');" })
+</div>
